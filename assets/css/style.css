@@ -1,0 +1,88 @@
+body {
+    font-family: "Bebas Neue", "Montserrat", sans-serif;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+}
+
+#high {
+    font-style: bold;
+    color:darkslateblue;
+    width:48%;
+    padding-left: 10px;
+}
+
+#timer {
+    float: right;
+    text-align: right;
+    width: 50%;
+    padding-right: 10px;
+
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+section {
+    position: absolute;
+    top: 40px;
+    width: 600px;
+    padding: 50px;
+    z-index: 0;
+}
+h1 {
+    font-style: Bold;
+    font-size: 250%;
+    color: darkslateblue;
+    padding: 10px;
+}
+
+p {
+    font-size: 120%;
+}
+
+button {
+    display: block;
+    background-color: darkslateblue;
+    color: white;
+    min-height: 15px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding: 1px 2px 1px 2px;
+    min-width: 100px;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+h2 {
+    margin: 10px;
+    width: 100%;
+    border-top: 2px solid darkgray;
+    color: darkgray;
+    padding-top: 10px;
+    letter-spacing: .5px;
+}
+#startButton {
+    min-width: 80px;
+    
+}
+#startScreen {
+    text-align: center;
+    visibility: hidden;
+
+}
+ #resultScreen, #highscores {
+    visibility: hidden;
+}
+
+#questionScreen {
+    z-index: 1;
+    display: block;
+    justify-content: center;
+    text-align: left;
+}
