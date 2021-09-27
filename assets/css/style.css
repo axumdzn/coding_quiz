@@ -64,14 +64,13 @@ button {
 
 #startButton {
     min-width: 80px;
-    
 }
+
 #startScreen {
     text-align: center;
-    visibility: hidden;
-
 }
-#questionScreen, #highscores {
+
+#startScreen, #questionScreen, #resultScreen {
     visibility: hidden;
 }
 
@@ -109,3 +108,14 @@ button {
     margin: 0;
 }
 
+#highscores {
+    display: block;
+    justify-content: center;
+    text-align: left;
+}
+
+#highscores button {
+    display: inline;
+    min-width: 100px;
+    text-align: center;
+}
