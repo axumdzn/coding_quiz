@@ -64,13 +64,14 @@ button {
 
 #startButton {
     min-width: 80px;
+    justify-content: center;
 }
 
 #startScreen {
     text-align: center;
 }
 
-#startScreen, #questionScreen, #resultScreen {
+#highscores, #questionScreen, #resultScreen {
     visibility: hidden;
 }
 
@@ -88,6 +89,7 @@ button {
     color: darkgray;
     padding-top: 10px;
     letter-spacing: .5px;
+    visibility:hidden;
 }
 
 #resultScreen {
