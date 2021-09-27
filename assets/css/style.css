@@ -44,6 +44,7 @@ h1 {
 
 p {
     font-size: 120%;
+    padding: 10px;
 }
 
 button {
@@ -57,16 +58,10 @@ button {
     min-width: 100px;
     text-align: left;
     letter-spacing: 1px;
+    border-radius: 7px;
 }
 
-h2 {
-    margin: 10px;
-    width: 100%;
-    border-top: 2px solid darkgray;
-    color: darkgray;
-    padding-top: 10px;
-    letter-spacing: .5px;
-}
+
 #startButton {
     min-width: 80px;
     
@@ -76,7 +71,7 @@ h2 {
     visibility: hidden;
 
 }
- #resultScreen, #highscores {
+#questionScreen, #highscores {
     visibility: hidden;
 }
 
@@ -86,3 +81,31 @@ h2 {
     justify-content: center;
     text-align: left;
 }
+
+#questionScreen h2 {
+    margin: 10px;
+    width: 100%;
+    border-top: 2px solid darkgray;
+    color: darkgray;
+    padding-top: 10px;
+    letter-spacing: .5px;
+}
+
+#resultScreen {
+    display: inline-block;
+    justify-content: center;
+    text-align: left;
+}
+
+#resultScreen label{
+    padding: 10px;
+    font-size: 115%;
+}
+
+#submitInput {
+    display: inline;
+    min-width: 70px;
+    text-align: center;
+    margin: 0;
+}
+
