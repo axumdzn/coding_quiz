@@ -6,8 +6,8 @@ var timerEl = document.querySelector('#timeEl');
 var questiontxt = document.querySelector('#question');
 var resultText = document.querySelector('#resultText');
 var scoreText = document.querySelector('#scoreText');
-var initialInput = document.querySelector('#initialsInput');
 var leaderboardEl = document.querySelector('#leaderboards');
+var initialInput = document.querySelector('#initialsInput');
 
 var startbtn = document.querySelector('#startButton');
 var answer1btn = document.querySelector('#answer1');
@@ -17,6 +17,7 @@ var answer4btn = document.querySelector('#answer4');
 var submitbtn = document.querySelector("#submitInput");
 var goBackbtn = document.querySelector("#goBack");
 var resetbtn = document.querySelector("#resetScore");
+var viewHighscoreEl = document.querySelector("#high");
 
 var leaderboard;
 var guess;
@@ -61,13 +62,13 @@ function init() {
     if (leaderboard === undefined) {
         leaderboard = [{
             highscore: 0,
-            initials: " "
-        }]
+            initials: ""
+        }];
 
         localStorage.setItem("leaderboard", JSON.stringify(leaderboard))
     }
     else {
-        makeList()}
+        makeList();}
 
 }
 // question timer function
@@ -129,42 +130,70 @@ function toScoreScreen() {
 }
 
 //function to submit intials to highscore
-function submitScore() {
+function submitScore(event) {
+    event.preventDefault();
+    leaderboard = JSON.parse(localStorage.getItem("leaderboard"))
+    var currentScore = {
+        highscore: score,
+        initials: initialInput.value
+    }
+    
     resultScreenEl.style.visibility = "hidden";
     highscoresEl.style.visibility = "visible";
-    leaderboard.push(score, initialInput.value);
-    makeList();
+    if(leaderboard !== null){
+        leaderboard.push(currentScore)
+    }
+    else {
+    leaderboard = [{
+        highscore: score,
+        initials: initialInput.value
+        }]
+    }
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-
+    makeList();
 }
 
 // makes leaderboard list
 function makeList() {
-    leaderboardEl.children.clear;
+    while (leaderboardEl.firstChild) {
+        leaderboardEl.removeChild(leaderboardEl.firstChild);
+    }
+    leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
     if(leaderboard != null){
-        leaderboard.sort(function(a, b){return b - a});
+        leaderboard.sort(function(a, b){return b.highscore - a.highscore});
     
         for (let i = 0;i < leaderboard.length;i++) {
             var li = document.createElement('li');
             li.textContent = leaderboard[i].initials + ": " + leaderboard[i].highscore;
-            leaderboardEl.append(li);
+            leaderboardEl.appendChild(li);
         }
     }
 }
 // function to reset highscore list 
 function resetScore() {
-    leaderboardEl.children.clear;
+
+    while (leaderboardEl.firstChild) {
+        leaderboardEl.removeChild(leaderboardEl.firstChild);
+    }
     localStorage.clear();
 
 }
 
 //function to go back to the main screen
 function mainScreen() {
+    timerCount = 99;
+    currentQuestion = 0;
     highscoresEl.style.visibility = 'hidden';
     startScreenEl.style.visibility = "visible";
 }
 
-
+function showHighscore() {
+    highscoresEl.style.visibility = "visible";
+    startScreenEl.style.visibility = "hidden";
+    questionScreenEl.style.visibility = "hidden";
+    resultScreenEl.style.visibility = "hidden";
+    makeList();
+}
 
 //event listeners
 init();
@@ -173,6 +202,7 @@ answer1btn.addEventListener('click', answerResult);
 answer2btn.addEventListener('click', answerResult);
 answer3btn.addEventListener('click', answerResult);
 answer4btn.addEventListener('click', answerResult);
-submitbtn.addEventListener('click', submitScore);
+submitbtn.addEventListener('submit', submitScore);
 goBackbtn.addEventListener('click', mainScreen);
 resetbtn.addEventListener('click', resetScore);
+viewHighscoreEl.addEventListener('click', showHighscore);
